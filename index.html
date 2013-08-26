@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8" />
+<head>
+    <title>CarbFix</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="icon" type="image/png" href="images/favicon.png" />
+    <meta name="author" content="Bjarni Jens Kristinsson" rel="mailto:bjarni.jens@gmail.com">
+</head>
+    <script src="js/jquery-1.10.1.min.js"></script>
+    <!-- Jquery UI: Core, Widget, Mouse & Draggable to use with collision plugin. Droppable for level 1. -->
+        <script src="js/ui/jquery.ui.core.min.js"></script>
+        <script src="js/ui/jquery.ui.widget.min.js"></script>
+        <script src="js/ui/jquery.ui.mouse.min.js"></script>
+        <script src="js/ui/jquery.ui.draggable.min.js"></script>
+        <script src="js/jquery-collision-1.0.2.min.js"></script>
+        <script src="js/jquery-ui-draggable-collision-1.0.2.min.js"></script>
+        <script src="js/ui/jquery.ui.droppable.js"></script>
+    <script language="javascript" type="text/javascript">
+        //~ Canvas variables.
+        var ctx1,ctx2,ctx3,ctx4,ctx5,ctxLVL3;
+        
+        //~ Audio varibles.
+        var audioEn,audioIs;
+        
+        //~ Background, Title & Whiteboard images.
+        var bg,bg0,bg1,bg2,bg3,bg_class;
+        var t,t1_en,t1_is,t2_en,t2_is,t3;
+        var wb;
+        
+        //~ Icons and Navigation variables.
+        var iconIs,iconEn,elementNext,iconNext,iconNextGlow,iconRepeat,iconRepeatGlow;
+        var nav1_en,nav1_is,nav2_en,nav2_is,nav3_en,nav3_is;
+        var timeScoreEn,timeScoreIs;
+        
+        //~ Language, level & score variables.
+        var english=false;
+        var level=0, allowNextLevel=true;
+        var scoreCurrentLevel=0, scoreTotal=0;
+        var welcomeWarning,goodbyeMessage;
+        
+        //~ Time variables.
+        var smokeTimer, audioTimeout;
+        var theTimer, secondsLeft=0;
+        var stepIntervalCounter, stepIntervalTimer;
+        
+        //~ Carbon Cycle Questions images.
+        var bin,bus,extensionCable,megaphone,renewableEnergy,tree,tomato,waterTap;
+        
+        //~ Character images and variables
+        var carry,carry02,carry03,carry04,carry05,carry06,carry07,carry08,carry09,carry10;
+        var fix,fix01,fix02,fix03,fix04,fix05,fix06,fix07,fix08,fix09,fix10,fix11;
+        var carry_x=595,carry_y=794,fix_x=595,fix_y=794;
+        var C,CO2,H2,H2CO3,H2O,H2S;
+        
+        //~ Level 0: Smoke.
+        var sm,sm0,sm1,sm2,sm3,sm4;
+        
+        //~ Level 1: Pressure bar.
+        var gases; // 1D array
+        var p,p0,p1,p2,p3,p4,p_x=128,p_y=308;
+        var pressure;
+        
+        //~ Level 2: Pipes.
+        var pipes; // 2D array
+        var sP; // solutionPath (2D array)
+        var stEwh,stNwh,cuNEwh,cuNWwh,cuSWwh,cuSEwh;
+        var stEbl,stNbl,cuNEbl,cuNWbl,cuSWbl,cuSEbl;
+        
+        //~ Level 3: Movable H2CO3 character.
+        var basaltMap; // 2D array
+        var X,Y,allowMovement;
+        var countCalcite,countSideride,countMagnecite;
+    </script>
+    <script src="js/carbfix.js"></script>
+
+<body>
+    <!-- Canvas layers -->
+    <canvas id='layer1' width="1024px" height="768px"></canvas>
+    <canvas id='layer2' width="1024px" height="768px"></canvas>
+    <canvas id='layer3' width="1024px" height="768px"></canvas>
+    <canvas id='layer4' width="1024px" height="768px"></canvas>
+    <canvas id='layer5' width="1024px" height="768px"></canvas>
+    <canvas id='layerTop' width="1024px" height="768px">
+        Your browser does not support <code>HTML5</code>.
+        Please update your browser or install one of the following: <ul>
+            <li><a href="http://www.mozilla.org/en-US/firefox/new/">Mozilla Firefox</a>
+            <li><a href="https://www.google.com/intl/en/chrome/browser/">Google Chrome</a>
+            <li><a href="http://www.opera.com/">Opera</a>
+        </ul>
+    </canvas>
+    
+    <!-- Score/time board & refresh/next buttons. -->
+    <div class="fromTopLeft                lvl1 lvl2 lvl3      pre2 pre3 post1 post2 post3" id="score-time"><span id='time_num'></span><span id='score_num'></span></div>
+    <div class="fromTopLeft clickableRotating      lvl1 lvl2 lvl3 pre1 pre2 pre3 post1 post2 post3                lvlCarbonQuestions lvlJourney         " id="repeat" onClick="lvlReload();"></div>
+    <div class="fromTopLeft clickableRotating lvl0      lvl2 lvl3 pre1 pre2 pre3 post1 post2 post3 lvlCarbonCycle lvlCarbonQuestions lvlJourney lvlExtra" id="next" onClick="if(allowNextLevel) lvlComplete(); else alert('Please complete your level.')"></div>
+    
+    
+    <!-- Navigation buttons-->
+    <div class="fromTopLeft menu-buttons clickableRotating lvl0" id='is' onClick="english=false; language();"></div>
+    <div class="fromTopLeft menu-buttons clickableRotating lvl0" id='en' onClick="english=true;  language();"></div>
+    <div class="fromTopLeft menu-buttons clickableRotating lvl0" id='cycleButton' onClick="loadLvlCarbonCycle();"></div>
+    <div class="fromTopLeft menu-buttons clickableRotating lvl0" id='startJourney' onClick="lvlComplete();"></div>
+    <div class="fromTopLeft menu-buttons clickableRotating lvl0" id='additionalResources' onClick="loadLvlExtra();"></div>
+    
+    
+    <!-- level 1 -->    
+    <div class="fromTopLeft lvl1" id='lvl1_frame'>
+        <div class="fromTopLeft lvl1_obstacles lvl1" id="lvl1_obs1"></div>
+        <div class="fromTopLeft lvl1_obstacles lvl1" id="lvl1_obs2"></div>
+        <div class="fromTopLeft lvl1_obstacles lvl1" id="lvl1_obs3"></div>
+        <div class="fromTopLeft lvl1 droppable" id="lvl1_dropArea"></div>
+    </div>
+    <div class="fromTopLeft lvl1" id='lvl1_gameOver'></div>
+    
+    
+    <!-- level 2 -->
+    <div class="fromTopLeft lvl2" id='lvl2_frame'></div>
+    <div class="fromTopLeft lvl2 clCO2" id='lvl2_onlooker1'></div>
+    <div class="fromTopLeft lvl2 clCO2" id='lvl2_onlooker2'></div>
+    <div class="fromTopLeft lvl2 clCO2" id='lvl2_onlooker3'></div>
+    <div class="fromTopLeft lvl2 clCO2" id='lvl2_fuserCO2'></div>
+    <div class="fromTopLeft lvl2 clH2O" id='lvl2_fuserH2O'></div>
+    <div class="fromTopLeft lvl2 clH2CO3" id='lvl2_outcomeH2CO3'></div>
+    <div class="fromTopLeft lvl2" id='lvl2_gameOver'></div>
+    
+    
+    <!-- level 3 -->
+    <div class="fromTopLeft lvl3" id='lvl3_frame'></div>
+    <canvas class="fromTopLeft lvl3" id='lvl3_canvas' width="768px" height="512px"></canvas>
+    <div class="fromTopLeft lvl3 clH2CO3" id='lvl3_fuserH2CO3'></div>
+    <div class="fromTopLeft lvl3 clH2CO3" id='lvl3_backupH2CO3'></div>
+        <div class="fromTopLeft lvl3 catajonOfCalcite" id="fuseCalcite1"></div>
+        <div class="fromTopLeft lvl3 catajonOfCalcite" id="fuseCalcite2"></div>
+        <div class="fromTopLeft lvl3 catajonOfCalcite" id="fuseCalcite3"></div>
+        <div class="fromTopLeft lvl3 catajonOfSideride" id="fuseSideride1"></div>
+        <div class="fromTopLeft lvl3 catajonOfSideride" id="fuseSideride2"></div>
+        <div class="fromTopLeft lvl3 catajonOfSideride" id="fuseSideride3"></div>
+        <div class="fromTopLeft lvl3 catajonOfMagnecite" id="fuseMagnecite1"></div>
+        <div class="fromTopLeft lvl3 catajonOfMagnecite" id="fuseMagnecite2"></div>
+        <div class="fromTopLeft lvl3 catajonOfMagnecite" id="fuseMagnecite3"></div>
+
+    
+    
+    <!-- postLvl 3 -->
+    <div class="fromTopLeft post3">
+        <div class="fromTopLeft post3" id="post3numbers">
+            <span id="numberOfCalcite"></span></br>
+            <span id="numberOfSideride"></span></br>
+            <span id="numberOfMagnecite"></span>
+        </div>
+        <div class="fromTopLeft post3" id="post3pictures">
+            <div class="fromTopLeft" id="imageOfCalcite"></div>
+            <div class="fromTopLeft" id="imageOfSideride"></div>
+            <div class="fromTopLeft" id="imageOfMagnecite"></div>
+        </div>
+    </div>
+    
+    
+    <!-- Extra material -->
+    <div class="fromTopLeft lvlExtra">
+        <h1><span id='extra_header'></span></h1>
+        
+        <ul>
+            <li><a id="teachersGuideLink"><span id='teachersGuideText'></span></a>
+        </ul>
+        
+        <br><br><br><br><br>
+        
+        <credit>
+            <p><b><span id='teachign'></span></b></br>
+            Heiða Lind Sigurðardóttir</br>
+            Magnús Valur Pálsson</br>
+            Mariela Alejandra</p>
+            <p><b><span id='programmer'></span></b></br>
+            Bjarni Jens Kristinsson</br>
+            &#60;bjarni.jens@gmail.com&#62;</p>
+        </credit>
+    </div>
+    
+    <!-- Carbon Cycle video -->
+    <div class="fromTopLeft lvlCarbonCycle">
+        <iframe src="" id="ccv" width="512" height="384" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+    </div>
+    
+    
+    <!-- Carbon Questions -->
+    <div class="fromTopLeft lvlCarbonQuestions">
+        <div class="fromTopLeft" id="carbonQuestions_text">
+            <h2><span id="ccqHeader"></span></h2>
+            <p><span id="ccqText"></span></p>
+        </div>
+        <div class="fromTopLeft lvlCarbonQuestions" id="carbonQuestions_pictures">
+            <div class="fromTopLeft clickableBorderFocus ccqImages ccqRow1 ccqCol1" id="divBin" onClick="CCQ_imageClicked(1);"></div>
+            <div class="fromTopLeft clickableBorderFocus ccqImages ccqRow1 ccqCol2" id="divBus" onClick="CCQ_imageClicked(2);"></div>
+            <div class="fromTopLeft clickableBorderFocus ccqImages ccqRow2 ccqCol1" id="divExtensionCable" onClick="CCQ_imageClicked(3);"></div>
+            <div class="fromTopLeft clickableBorderFocus ccqImages ccqRow2 ccqCol2" id="divMegaphone" onClick="CCQ_imageClicked(4);"></div>
+            <div class="fromTopLeft clickableBorderFocus ccqImages ccqRow3 ccqCol1" id="divRenewableEnergy" onClick="CCQ_imageClicked(5);"></div>
+            <div class="fromTopLeft clickableBorderFocus ccqImages ccqRow3 ccqCol2" id="divTree" onClick="CCQ_imageClicked(6);"></div>
+            <div class="fromTopLeft clickableBorderFocus ccqImages ccqRow4 ccqCol1" id="divTomato" onClick="CCQ_imageClicked(7);"></div>
+            <div class="fromTopLeft clickableBorderFocus ccqImages ccqRow4 ccqCol2" id="divWaterTap" onClick="CCQ_imageClicked(8);"></div>
+        </div>
+    </div>
+    
+    <!-- The Journey video -->
+    <div class="fromTopLeft lvlJourney">
+        <iframe src="" class="silence" id="jv" width="512" height="384" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+    </div>
+    
+    
+    <!-- Audio, characters talking -->
+    <audio id="talk_en" preload="auto">
+        <source src="audio/English.mp3" type="audio/mp3">
+        <source src="audio/English.ogg" type="audio/ogg">
+    </audio>
+    
+    <audio id="talk_is" preload="auto">
+        <source src="audio/Icelandic.mp3" type="audio/mp3">
+        <source src="audio/Icelandic.ogg" type="audio/ogg">
+    </audio>
+
+</body>
+
+    <script language="javascript" type="text/javascript">
+        //~ Initializing canvas variables.
+        ctx1=document.getElementById("layer1").getContext("2d");
+        ctx2=document.getElementById("layer2").getContext("2d");
+        ctx3=document.getElementById("layer3").getContext("2d");
+        ctx4=document.getElementById("layer4").getContext("2d");
+        ctx5=document.getElementById("layer5").getContext("2d");
+        ctxLVL3=document.getElementById("lvl3_canvas").getContext("2d");
+        
+        //~ Initializing every variable and loading all images.
+        init();
+    </script>
+</html>

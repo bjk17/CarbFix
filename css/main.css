@@ -1,0 +1,386 @@
+body {
+    font-family: helvetica;
+    font-size: 16px;
+    margin: 0px;
+    padding: 0px;
+    
+    /* Some browser add unnecessary pixel row(s) at top,
+     * making scroll bars appear. This will hide the
+     * vertical scroll bar, cutting maybe the bottom row(s).
+     */
+    overflow-y: hidden;
+}
+
+credit {
+    text-align: right;
+    font-style: italic;
+    font-size: 80%;
+}
+
+/* 
+ *  Canvas layers.
+ */
+canvas {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    padding: 0px;
+    margin: 0px;
+}
+#layer1 { z-index: 1; }
+#layer2 { z-index: 2; }
+#layer3 { z-index: 3; }
+#layer4 { z-index: 4; }
+#layer5 { z-index: 5; }
+#layerTop { z-index: 10000; }
+
+
+/* 
+ *  Hide everyting at start.
+ */
+.lvl0,.lvl1,.lvl2,.lvl3,.post3,.lvlExtra,.lvlCarbonCycle,.lvlCarbonQuestions,.lvlJourney {
+    display: none;
+}
+
+/* 
+ *  Objects positioned from top left corner.
+ */
+.fromTopLeft {
+    position: absolute;
+    float: left;
+    z-index: 10;
+}
+#score-time {
+    left: 797px;
+    width: 227px;
+    top: 0px;
+    height: 119px;
+    font-weight: bold;
+    font-size: 36px;
+    color: white;
+    background-size: cover; /* CSS3 */
+}
+#time_num {
+    position: absolute;
+    top: 20px;
+    left: 140px;
+}
+#score_num {
+    position: absolute;
+    top: 60px;
+    left: 140px;
+}
+#repeat {
+    top: 700px;
+    left: 880px;
+    width: 55px;
+    height: 55px;
+    background-size: cover;
+}
+#next {
+    top: 700px;
+    left: 960px;
+    width: 55px;
+    height: 55px;
+    background-size: cover;
+}
+#is {
+    left: 20px;
+    top: 20px;
+    width: 50px;
+    height: 50px;
+    background-size: 50px;
+}
+#en {
+    left: 90px;
+    top: 20px;
+    width: 50px;
+    height: 50px;
+    background-size: 50px;
+}
+.menu-buttons {
+    left: 20px;
+    width: 276px;
+    height: 59px;
+    background-size: cover; /* CSS3 */
+}
+#cycleButton {
+    top: 100px;
+}
+#startJourney {
+    top: 170px;
+}
+#additionalResources {
+    top: 240px;
+}
+
+
+/* Carbon Cycle Video, Journey Video & Extra */
+.lvlExtra,.lvlCarbonCycle,.lvlCarbonQuestions,.lvlJourney,.post3 {
+    position: fixed;
+    float: left;
+    left: 256px;
+    top: 140px;
+    width: 512px;
+    height: 384px;
+    overflow: hidden;
+    z-index: 100;
+}
+
+
+/* Carbon Cycle Questions */
+#carbonQuestions_text,#carbonQuestions_pictures {
+    position: absolute;
+    top: 0px;
+    width: 256px;
+    height: 384px;
+}
+#carbonQuestions_text { 
+    overflow-y: auto;
+    left:   0px;
+}
+#carbonQuestions_pictures { left: 256px; }
+.ccqImages { /* 96 = 2^5 x 3 */
+    width: 94px;
+    height: 62px;
+    border: 1px solid grey;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.ccqRow1 { top:  16px; }
+.ccqRow2 { top: 112px; }
+.ccqRow3 { top: 208px; }
+.ccqRow4 { top: 304px; }
+.ccqCol1 { left: 16px; }
+.ccqCol2 { left:144px; }
+
+
+/* level 1 */
+#lvl1_frame,#lvl1_gameOver {
+    left: 126px;
+    top: 184px;
+    width: 847px;
+    height: 515px;
+    display: none;
+}
+.lvl1_obstacles {
+} /* next ones are situated relative to #lvl1_frame */
+#lvl1_obs1 {
+    top:    0px;
+    left: 535px;
+    width: 74px;
+    height: 95px;
+}
+#lvl1_obs2 {
+    top: 155px;
+    left: 535px;
+    width: 74px;
+    height: 96px;
+}
+#lvl1_obs3 {
+    top:  251px;
+    left: 535px;
+    width: 312px;
+    height: 262px;
+}
+#lvl1_dropArea {
+    left: 609px;
+    top: 0px;
+    width: 238px;
+    height: 251px;
+}
+.clCO2,.clH2O,.clH2S,.clH2,.clH2CO3 {
+    width: 50px;
+    height: 50px;
+    background-size: cover;
+}
+.clCO2 { 
+    width: 75px;
+    background-image: url('../images/characters/CO2.png');
+}
+.clH2O {
+    height: 55px;
+    background-image: url('../images/characters/H2O.png');
+}
+.clH2S {
+    width: 60px;
+    background-image: url('../images/characters/H2S.png');
+}
+.clH2  {
+    width: 74px;
+    height: 45px;
+    background-image: url('../images/characters/H2.png');
+}
+.clH2CO3 {
+    height: 65px;
+    background-image: url('../images/characters/H2CO3.png');
+}
+
+/* level 2 */
+#lvl2_frame,#lvl2_gameOver {
+    left: 361px;
+    top: 300px;
+    width: 512px;
+    height: 256px;
+    border: 1px solid black;
+    display: none;
+}
+.lvl2_pipes {
+    position: fixed;
+    width: 62px;
+    height: 62px;
+    border: 1px solid grey;
+    cursor: pointer;
+}
+#lvl2_onlooker1 {
+    left: 40px;
+    top: 50px;
+}
+#lvl2_onlooker2 {
+    left: 10px;
+    top: 130px;
+}
+#lvl2_onlooker3 {
+    left: 50px;
+    top: 220px;
+}
+#lvl2_fuserCO2 {
+    left: 110px;
+    top: 155px;
+    z-index: 20;
+}
+#lvl2_fuserH2O {
+    left: 881px;
+    top: 305px;
+    z-index: 20;
+}
+#lvl2_outcomeH2CO3 {
+    display: none;
+    left: 240px;
+    top: 300px;
+    z-index: 20;
+}
+
+
+/* level 3 */
+#lvl3_frame,#lvl3_canvas {
+    left: 128px;
+    top: 128px;
+    width: 768px;
+    height: 512px;
+    border: 1px solid black;
+    display: none;
+    z-index: 5;
+} #lvl3_canvas { z-index: 10; }
+#lvl3_fuserH2CO3 {
+    display: none;
+    left: 134px;
+    top: 128px;
+    z-index: 20;
+}
+#lvl3_backupH2CO3 {
+    display: none;
+    width: 40px;
+    height: 52px;
+    left: 139px;
+    top: 135px;
+    z-index: 15;
+}
+.catajonOfCalcite,.catajonOfSideride,.catajonOfMagnecite,.crystalOfCalcite,.crystalOfSideride,.crystalOfMagnecite {
+    height: 62px;
+    width: 62px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.catajonOfCalcite { background-image: url('../images/crystals/catajon_calcite.png'); }
+.catajonOfSideride { background-image: url('../images/crystals/catajon_sideride.png'); }
+.catajonOfMagnecite { background-image: url('../images/crystals/catajon_magnecite.png'); }
+.crystalOfCalcite { background-image: url('../images/crystals/crystal_calcite.png'); }
+.crystalOfSideride { background-image: url('../images/crystals/crystal_sideride.png'); }
+.crystalOfMagnecite { background-image: url('../images/crystals/crystal_magnecite.png'); }
+
+
+/* post-level 3 */
+#post3numbers,#post3pictures {
+    position: absolute;
+    top: 0px;
+    width: 256px;
+    height: 384px;
+}
+#post3numbers { 
+    left: 0px;
+    font-size: 64px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 128px;
+    color: #bed62f;
+}
+#post3pictures {
+    left: 256px;
+    background-color: black;
+}
+#imageOfCalcite,#imageOfSideride,#imageOfMagnecite {
+    height: 128px;
+    width: 256px;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+}
+#imageOfCalcite { top:   0px; background-image: url('../images/crystals/img_calcite.jpg'); }
+#imageOfSideride { top: 128px; background-image: url('../images/crystals/img_sideride.jpg'); }
+#imageOfMagnecite { top: 256px; background-image: url('../images/crystals/img_wrong_dolomit.jpg'); }
+
+/*
+ *  Clickable objects.
+ */
+.clickableRotating {
+    cursor: pointer;
+}
+.clickableRotating:hover  {
+  -ms-transform: rotate(-5deg);
+  -webkit-transform: rotate(-5deg);
+  -moz-transform: rotate(-5eg);
+  -o-transform: rotate(-5deg);
+  transform: rotate(-5deg);
+}
+.clickableBorderFocus {
+    cursor: pointer;
+}
+.clickableBorderFocus:hover  {
+    border: 1px solid #bed62f;
+}
+
+
+/*
+ *  Draggable objects.
+ */
+.draggable {
+    float: left;
+    cursor: move;
+}
+
+
+/* list before links */
+ul {
+    margin-top: 0px;
+    padding-left: 2em;
+    list-style: none;
+    text-indent: -1em;
+}
+ul li:before {content: "\00BB \0020"}
+
+/* links -- edit colors later */
+a:link {
+    color: #333333;
+}
+a:visited {
+    color: #FFFFFF;
+}
+a:hover {
+    color: #CCCCCC;
+    background-color: #333333;
+    text-decoration: none;
+}
+a:active {
+    color: #333333;
+}
