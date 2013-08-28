@@ -304,8 +304,8 @@ function language() {
     } else { //~ Icelandic
         //~ Kennslugögn
         $("#extra_header").text("Aukaefni");
-        $("#teachersGuideText").text("Kennsluleiðbeiningar");
-        $("a#teachersGuideLink").attr('href', 'docs/Teachers guide.docx');
+        $("#teachersGuideText").text("Kennsluleidbeiningar");
+        $("a#teachersGuideLink").attr('href', 'docs/Kennsluleiðbeiningar.docx');
         $("#teachign").text("Kennsluefni & grafísk hönnun");
         $("#programmer").text("Forritun");
         
@@ -496,35 +496,35 @@ function CCQ_imageClicked(number) {
         case 1:
             $("#ccqHeader").text("Reduce, reuse and recycle");
             $("#ccqText").html("<p><u>Reduce:</u> Sometimes we buy things we really don´t need or use or doesn’t last so it ends up in the garbage. If we make our choices with great care and buy fewer and well made things we reduce the amount of waste in the world. If it is absolutely needed, remember to buy things that last longer and have less packaging.</p> <p><u>Reuse:</u> When you reuse things you already have, you save money and help take care of the environment. Give to others things you no longer need, so they can use them, and borrow things you only need for a certain time. Many people use their own reusable bag instead of plastic bags when they go shopping and you can buy used furniture and clothes. Can you think of something else?</p> <p><u>Recycle:</u> separate and recycle whatever materials you can, like plastic and glass bottles, cans, and paper, so they can be collected and remade into new products.</p> <p>When something is recycled it gets a new meaning and purpose. Plastic bottles are recycled and used for making fleece, used in sweaters and you can get recycled paper. It´s possible to use broken plates for mosaic, make bowls out of old vinyl records, cut nylon socks and use them as hair bands or hang your old skateboard up on you wall and use it as a shelf. <br> The possibilities are endless and you can use the internet, books and you own imaginations to get a brilliant idea! </p>");
-            break;
+            break; //OK long ago
         case 2:
-            $("#ccqHeader").text("Dummy header 2");
-            $("#ccqText").html("The text is yet to come.");
-            break;
+            $("#ccqHeader").text("Transportation");
+            $("#ccqText").html("There are many ways you can help our planet. The more cars we have driving in the streets the more carbon dioxide is released in to the atmosphere. When you walk, bike or take a bus you are helping our planet by reducing pollution. The exercise is also good for your body. <br> If your parents have a car, encourage them to combine many small trips in to one bigger and all their errands at once. <br> Sharing car rides with others and using public transportation like buses or trains whenever you can also makes a big change.");
+            break; //OK 2013-08-28
         case 3:
-            $("#ccqHeader").text("Dummy header 3");
-            $("#ccqText").html("The text is yet to come.");
-            break;
+            $("#ccqHeader").text("Save energy ");
+            $("#ccqText").html("Power down and unplug all appliances and electronics you are not using whenever you can. When you keep them plugged into an outlet, they still use power, even when they're turned off. We often forget to unplug our rechargers for phones and computers after we have charged them. Some electricity will leak out of them, wasting money and energy. <br> Use natural light whenever it is possible. In buildings and homes with glass windows, there is no need of lighting during sunny days. <br> If you and your family are shopping new electronics or appliances, remember to look for the Energy Star label. This means that they are energy efficient and typically use less energy than regular models.");
+            break; //OK 2013-08-28
         case 4:
-            $("#ccqHeader").text("Dummy header 4");
-            $("#ccqText").html("The text is yet to come.");
-            break;
+            $("#ccqHeader").text("Share your knowledge. ");
+            $("#ccqText").html("Now that you know a lot about the climate change and how to find solutions to it /respond to /deal with /react to it you can influence others. You can give advices to friends and families and give a presentation to your school or community group. Many artist make art that gets people to think about the environment and their influence on it, or create the art with recycled or sustainable material like wood or snow. A group of people can get more done than one person so if you have a passion to change something in the world to the better, get involved with others that share the same interest and take action.");
+            break; //OK 2013-08-28
         case 5:
             $("#ccqHeader").text("Renewable energy");
-            $("#ccqText").html("Most of the energy used in the world we get from burning fossil fuels like coal and oil, emitting large amounts of gases causing climate change. </br> Renewable energy resources won´t run out or they can be replenished/refilled/renewed within a few years or decades. These include wind, sunshine, water and the earth’s heat (geothermal energy). By using these clean energy sources we can produce the electricity needed for our daily lives avoiding the carbon dioxide emissions to the atmosphere, hence slowing down climate change.");
-            break;
+            $("#ccqText").html("Most of the energy used in the world we get from burning fossil fuels like coal and oil, emitting large amounts of gases causing climate change. <br> Renewable energy resources won´t run out or they can be replenished/refilled/renewed within a few years or decades. These include wind, sunshine, water and the earth’s heat (geothermal energy). By using these clean energy sources we can produce the electricity needed for our daily lives avoiding the carbon dioxide emissions to the atmosphere, hence slowing down climate change.");
+            break; //OK long time ago
         case 6:
-            $("#ccqHeader").text("Dummy header 6");
-            $("#ccqText").html("The text is yet to come.");
-            break;
+            $("#ccqHeader").text("Plant a tree ");
+            $("#ccqText").html("Planting trees benefits our planet in many ways. They help to slow climate change because they absorb carbon dioxide during photosynthesis. Flowers, bushes and other plants also play the same role, but on a smaller scale. <br> In our neighborhood, trees provide shade, which helps keep streets and houses cooler in summertime and protect us from wind and snow in winter time. They also provide shelter for birds and small animals living in parks and the field.");
+            break; //OK 2013-08-28
         case 7:
-            $("#ccqHeader").text("Dummy header 7");
-            $("#ccqText").html("The text is yet to come.");
-            break;
+            $("#ccqHeader").text("Eat fresh");
+            $("#ccqText").html("<p>Consider buying locally grown food. The further your food travels, the more pollution follows in transporting the food from the farm to your plate. You can find locally grown food at a farmers market and even at some grocery stores and perhaps you can grow your own.</p> <b>Just remember not to waste food.</b>");
+            break; //OK 2013-08-28
         case 8:
-            $("#ccqHeader").text("Dummy header 8");
-            $("#ccqText").html("The text is yet to come.");
-            break;
+            $("#ccqHeader").text("Save water ");
+            $("#ccqText").html("When you save water, you are saving energy too. It takes a lot of energy to deliver the water you use at home every day. It takes even more energy to turn it into hot water. <br> By turning the water off while brushing your teeth and try taking shorter showers you are turning the world into a better place. You can also buy low-flow shower heads or keep the pressure at minimum. <br> Did you know that a faucet that leaks at a rate of one drip per second can waste more than 3,000 gallons of water in a year? It pays off to fix that dripping faucet.");
+            break; //OK 2013-08-28
         default:
             $("#ccqHeader").text("What can I do?");
             $("#ccqText").text("Click on a picture and see what you can do to save your environment!");
@@ -549,7 +549,7 @@ function CCQ_imageClicked(number) {
             break;
         case 5:
             $("#ccqHeader").text("Endurnýtanleg orka");
-            $("#ccqText").html("Sýnið biðlund, texti enn í vinnslu.");
+            $("#ccqText").html("1. Flestallir orkugjafar heimsins koma frá bruna jarðefnaeldsneytis eins og kola og olíu. Við það losnar mikið af gasi út í andrúmsloftið sem veldur auknu magni koltvíoxíðs og loftslagsbreytingum. Endurnýtanlegir orkugjafar eins og vindur, sólskin, vatn og hiti jarðar (jarðvarmi) verða aldrei uppurnir eða búnir. Með því að nota þessar hreinu orkuuppsprettur getum við framleitt það rafmagn sem við þurfum í okkar daglega lífi án þess að menga og sleppa koltvíoxíði út í andrúmsloftið. Þar með hægjum við á loftslagsbreytingum. </br> Vð á Íslandi eigum mikið af vatni sem nýtist sem orkugjafi.  Húsin okkar eru því annað hvort hituð upp með vatni sem kemur úr jarðvarma virkjunum eða með rafmagni frá vatnsorkuverum. </br> Hvernig er það í öðrum löndum?");
             break;
         case 6:
             $("#ccqHeader").text("Gróðursettu tré");
