@@ -11,7 +11,7 @@ $(document).ready(function(){
     ctxTop.textAlign = "center";
     ctxTop.textBaseline = "middle"; 
     if (english) ctxTop.fillText("Loading...", 514, 384);
-    else         ctxTop.fillText("Hleður...", 514, 384);
+    else         ctxTop.fillText("Hleður...",  514, 384);
     
     console.log("Document ready.");
 });
@@ -279,7 +279,9 @@ function language() {
         $("#extra_header").text("Extra material");
         $("#teachersGuideText").text("Teacher's Guide");
         $("a#teachersGuideLink").attr('href', 'docs/Teachers guide.docx');
-        $("#teachign").text("Teaching material & Graphical design");
+        $("#manuscript").text("Manuscript");
+        $("#illustrations").text("Illustrations for videos");
+        $("#voices").text("Voices");
         $("#programmer").text("Programming");
         
         //~ Carbon Cycle video & questions
@@ -306,7 +308,9 @@ function language() {
         $("#extra_header").text("Aukaefni");
         $("#teachersGuideText").text("Kennsluleidbeiningar");
         $("a#teachersGuideLink").attr('href', 'docs/Kennsluleiðbeiningar.docx');
-        $("#teachign").text("Kennsluefni & grafísk hönnun");
+        $("#manuscript").text("Handrit");
+        $("#illustrations").text("Teikningar í myndbönd");
+        $("#voices").text("Talsetning");
         $("#programmer").text("Forritun");
         
         //~ Kolefnishringrásin: myndband & spurningar

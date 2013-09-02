@@ -11,7 +11,17 @@ body {
     overflow-y: hidden;
 }
 
-credit {
+#creditLeft,#creditRight {
+    position: absolute;
+    width: 256px;
+}
+#creditLeft {
+    text-align: left;
+    font-style: italic;
+    font-size: 80%;
+}
+#creditRight {
+    left: 256px;
     text-align: right;
     font-style: italic;
     font-size: 80%;
