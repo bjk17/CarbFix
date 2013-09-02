@@ -307,7 +307,7 @@ function language() {
         //~ Kennslugögn
         $("#extra_header").text("Aukaefni");
         $("#teachersGuideText").text("Kennsluleidbeiningar");
-        $("a#teachersGuideLink").attr('href', 'docs/Kennsluleiðbeiningar.docx');
+        $("a#teachersGuideLink").attr('href', 'docs/Kennsluleiðbeiningar.pdf');
         $("#manuscript").text("Handrit");
         $("#illustrations").text("Teikningar í myndbönd");
         $("#voices").text("Talsetning");
