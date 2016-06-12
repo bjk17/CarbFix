@@ -303,7 +303,6 @@ function language() {
         
         //~ Other
         welcomeWarning = "This game needs a minimum screen resolution of 1024x768 pixels. Please resize your browser window or hit the <F11> button on your keyboard.";
-        goodbyeMessage = "You will now be taken to a Google Form page (in Icelandic) to answer a few questions about your experience playing the game. If you do not wish to answer them you can simply close the page. But I would be delighted if you'd give yourself some time to carefully answer them.";
     
     } else { //~ Icelandic
         //~ Kennslugögn
@@ -334,7 +333,6 @@ function language() {
         
         //~ Annað
         welcomeWarning = "Þessi leikur þarf skjástærð upp á a.m.k. 1024x768 pixla. Vinsamlegast stækkaðu vafragluggan eða smelltu á <F11> takkann á lyklaborðinu þínu.";
-        goodbyeMessage = "Þér verður núna beint á Google Form síðu til að svara nokkrum spurningum um upplifunina þína á leiknum. Ef þú vilt ekki svara þeim þá einfaldlega lokar þú síðunni. En mér þætti afar vænt um ef þú gæfir þér tíma til að svara spurningunum.";
     }
 }
 
@@ -402,9 +400,7 @@ function lvlComplete() {
         case  7: level++; hide('post2'); wb=undefined; break;
         case  8: level++; clearLayer(ctx2); hide('pre3'); break;
         case  9: level++; hide('lvl3'); clearLayer(ctx3); clearLayer(ctx4); clearInterval(stepIntervalTimer); timerStop(); break; //~ LEVEL 3
-        case 10: level=0; clearLayer(ctx2); wb=undefined; hide('post3');
-            //~ alert(goodbyeMessage); window.location.href = "https://docs.google.com/forms/d/1Hx3XpnNLp07GzNuRLXqddkVTQeBP3mSXoyYGek1D0fA/viewform";
-            break;
+        case 10: level=0; clearLayer(ctx2); wb=undefined; hide('post3'); break;
         default: level=0; break;
     } lvlReload();
 }
