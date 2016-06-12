@@ -464,8 +464,8 @@ function loadLvlCarbonCycle() {
     level = -2; // This is 'lvlCarbonCycle'.
     
     //~ Setting Vimeo iframe source regarding to language.
-    if (english) $('iframe#ccv').attr('src','http://player.vimeo.com/video/72343748?byline=0&amp;portrait=0&amp;color=89302f');
-    else         $('iframe#ccv').attr('src','http://player.vimeo.com/video/72343750?byline=0&amp;portrait=0&amp;color=89302f');
+    if (english) $('iframe#ccv').attr('src','//player.vimeo.com/video/72343748?byline=0&amp;portrait=0&amp;color=89302f');
+    else         $('iframe#ccv').attr('src','//player.vimeo.com/video/72343750?byline=0&amp;portrait=0&amp;color=89302f');
     
     //~ Update background and title variables.
     bg = bg_class;
@@ -585,8 +585,8 @@ function loadLvlJourney() {
     wb = undefined;
     
     //~ Setting Vimeo iframe source regarding to language.
-    if (english) $('iframe#jv').attr('src','http://player.vimeo.com/video/72345186?byline=0&amp;portrait=0&amp;color=89302f');
-    else         $('iframe#jv').attr('src','http://player.vimeo.com/video/72343749?byline=0&amp;portrait=0&amp;color=89302f');
+    if (english) $('iframe#jv').attr('src','//player.vimeo.com/video/72345186?byline=0&amp;portrait=0&amp;color=89302f');
+    else         $('iframe#jv').attr('src','//player.vimeo.com/video/72343749?byline=0&amp;portrait=0&amp;color=89302f');
     
     //~ Drawing background and objects.
     show('lvlJourney');
